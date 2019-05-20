@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
 
-import './routes/routes.dart';
+import './routes.dart';
 
 class App extends StatefulWidget {
   @override
@@ -11,47 +10,51 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> with TickerProviderStateMixin {
-  List tabList = [
-    {'text': 'Home', 'path': '/home'},
-    {'text': 'Trending', 'path': '/trending'},
-    {'text': 'Search', 'path': '/search'},
-    {'text': 'Me', 'path': '/me'},
-  ];
-
   TabController _tabController;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-
-    _tabController = TabController(length: tabList.length, vsync: this);
   }
 
-  // AppState() {
-  //   final router = Router();
-  //   Routes.configureRoutes(router);
-  //   Application.router = router;
-  // }
+  void _onNavTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FluHub',
-      // onGenerateRoute: Application.router.generator,
+      // routes: routes,
       home: Scaffold(
-        appBar: AppBar(
-          // title: Text('FluHub'),
-          title: TabBar(
-            controller: _tabController,
-            // indicatorWeight: 2.0,
-            indicatorColor: Colors.white,
-            tabs: tabList.map((tab) {
-              return Center(child: Text(tab['text']));
-            }).toList(),
-          ),
-        ),
         body: Center(
           child: Text('You have pressed the button times.'),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.trending_up),
+              title: Text('Trending'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: Text('Search'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline),
+              title: Text('Me'),
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onNavTapped,
         ),
       ),
     );

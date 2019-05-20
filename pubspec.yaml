@@ -8,7 +8,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fluro: ^1.4.0
   shared_preferences: ^0.5.2
 
 dev_dependencies:
