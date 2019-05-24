@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Trending extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Trending'),
-      ),
-      body: Text('Trending'),
+    return CupertinoPageScaffold(
+      child: Text('Trending'),
     );
   }
 }

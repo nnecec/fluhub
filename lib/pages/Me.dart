@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Me extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Me'),
-      ),
-      body: Text('Me'),
+    return CupertinoPageScaffold(
+      child: Text('Me'),
     );
   }
 }
