@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import './routes.dart';
-import './pages/Root.dart';
+import './screen/Root.dart';
 
 class App extends StatefulWidget {
   @override

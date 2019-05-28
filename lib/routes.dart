@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import './pages/Root.dart';
-import './pages/Home.dart';
-import './pages/Trending.dart';
-import './pages/Search.dart';
-import './pages/Me.dart';
+import './screen/Root.dart';
+import './screen/Home.dart';
+import './screen/Trending.dart';
+import './screen/Search.dart';
+import './screen/Me.dart';
 
 final routes = {
   '/': (context) => Root(),
