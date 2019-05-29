@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import './screen/Root.dart';
+import './utils/api.dart';
 
 class App extends StatefulWidget {
   @override
@@ -11,9 +13,12 @@ class App extends StatefulWidget {
 class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      title: 'FluHub',
-      home: Root(),
+    return GraphQLProvider(
+      client: client,
+      child: CupertinoApp(
+        title: 'FluHub',
+        home: Root(),
+      ),
     );
   }
 }
