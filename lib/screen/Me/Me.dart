@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:fluhub/widgets/ListItem.dart';
 import './helper.dart';
 
 class Me extends StatelessWidget {
@@ -28,8 +29,11 @@ class Me extends StatelessWidget {
             Container(
               child: Text(viewer['email']),
             ),
-            Container(
-              child: Text(viewer['location']),
+            ListItem(
+              name: viewer['location'],
+              place: 'place',
+              date: 'date',
+              called: true,
             ),
           ],
         );
