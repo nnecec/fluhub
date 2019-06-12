@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:fluhub/widgets/ListItem.dart';
+import 'package:fluhub/widgets/Card.dart';
 import './helper.dart';
+import './profileCard.dart';
 
 class Me extends StatelessWidget {
   Widget queryUser() {
@@ -17,24 +19,30 @@ class Me extends StatelessWidget {
         if (result.loading) {
           return Center(child: CupertinoActivityIndicator());
         }
-        final viewer = result.data['viewer'];
+        final Map viewer = result.data['viewer'];
+        print(viewer);
         return ListView(
-          children: <Widget>[
-            Container(
-              height: 200,
-              color: Colors.amber[600],
-              child: Text(viewer['login']),
-              margin: EdgeInsets.only(bottom: 30.0),
-            ),
-            Container(
-              child: Text(viewer['email']),
-            ),
-            ListItem(
-              name: viewer['location'],
-              place: 'place',
-              date: 'date',
-              called: true,
-            ),
+          children: [
+            NCard(ProfileCard(viewer)),
+            Column(children: [
+              ListItem(
+                name: 'Repositories',
+                subtitle: viewer['repositories']['totalCount'].toString(),
+              ),
+              ListItem(
+                name: 'Stars',
+                subtitle:
+                    viewer['starredRepositories']['totalCount'].toString(),
+              ),
+              ListItem(
+                name: 'Followers',
+                subtitle: viewer['followers']['totalCount'].toString(),
+              ),
+              ListItem(
+                name: 'Following',
+                subtitle: viewer['following']['totalCount'].toString(),
+              ),
+            ])
           ],
         );
       },

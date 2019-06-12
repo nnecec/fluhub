@@ -7,7 +7,7 @@ final HttpLink httpLink = HttpLink(
 );
 
 final AuthLink authLink = AuthLink(
-  getToken: () => 'Bearer 1f4d84378ac481523932eb92094bff845b3e59b8',
+  getToken: () => 'Bearer c3ca64b5c79416c6583958e896c42030ff4cfda8',
   // OR
   // getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
 );
