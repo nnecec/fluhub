@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 import 'package:fluhub/widgets/ListItem.dart';
 import 'package:fluhub/widgets/Card.dart';
 import './helper.dart';
@@ -20,7 +22,6 @@ class Me extends StatelessWidget {
           return Center(child: CupertinoActivityIndicator());
         }
         final Map viewer = result.data['viewer'];
-        print(viewer);
         return ListView(
           children: [
             NCard(ProfileCard(viewer)),
@@ -49,13 +50,28 @@ class Me extends StatelessWidget {
     );
   }
 
+  Widget _renderAccount(context) => Container(
+        child: CupertinoButton(
+          color: CupertinoColors.extraLightBackgroundGray,
+          child: Text('使用 GitHub 登录'),
+          onPressed: () => {Navigator.pushNamed(context, '/login')},
+        ),
+      );
+
+  Widget _renderUser(context) {
+    if (true) {
+      return _renderAccount(context);
+    }
+    return queryUser();
+  }
+
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text('Me'),
       ),
       child: SafeArea(
-        child: queryUser(),
+        child: _renderUser(context),
       ),
     );
   }

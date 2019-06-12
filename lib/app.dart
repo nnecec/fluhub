@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import './screen/Root.dart';
+import './routes.dart';
 import './utils/api.dart';
 
 class App extends StatefulWidget {
@@ -17,7 +17,8 @@ class AppState extends State<App> {
       client: client,
       child: CupertinoApp(
         title: 'FluHub',
-        home: Root(),
+        routes: routes,
+        initialRoute: '/',
       ),
     );
   }

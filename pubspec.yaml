@@ -15,10 +15,11 @@ dependencies:
   graphql_flutter: ^1.0.1
   rxdart: ^0.22.0
   shared_preferences: ^0.5.2
+  webview_flutter: ^0.3.9+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
-  uses-material-design: true
+  uses-material-design: false

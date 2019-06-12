@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import './screen/Root.dart';
+import './screen/Account/Login.dart';
+
 import './screen/Home.dart';
 import './screen/Trending.dart';
 import './screen/Search.dart';
@@ -8,10 +10,7 @@ import './screen/Me/Me.dart';
 
 final routes = {
   '/': (context) => Root(),
-  '/home': (context) => Home(),
-  '/trending': (context) => Trending(),
-  '/search': (context) => Search(),
-  '/me': (context) => Me(),
+  '/login': (context) => Login(),
 };
 
 List tabList = [
