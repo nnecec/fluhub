@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:fluhub/widgets/ListItem.dart';
 import 'package:fluhub/widgets/Card.dart';
@@ -54,7 +53,10 @@ class Me extends StatelessWidget {
         child: CupertinoButton(
           color: CupertinoColors.extraLightBackgroundGray,
           child: Text('使用 GitHub 登录'),
-          onPressed: () => {Navigator.pushNamed(context, '/login')},
+          onPressed: () {
+            print(context);
+            Navigator.of(context, rootNavigator: true).pushNamed('/login');
+          },
         ),
       );
 

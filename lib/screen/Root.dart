@@ -28,7 +28,6 @@ class RootState extends State<Root> {
       ),
       tabBuilder: (BuildContext context, int index) {
         return CupertinoTabView(
-          routes: routes,
           builder: (BuildContext context) {
             return handleTap(index, context);
           },
