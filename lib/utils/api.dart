@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import '../config/constant.dart';
 
 final HttpLink httpLink = HttpLink(
   uri: 'https://api.github.com/graphql',
 );
 
 final AuthLink authLink = AuthLink(
-  getToken: () => 'Bearer c3ca64b5c79416c6583958e896c42030ff4cfda8',
+  getToken: () => 'Bearer ${Constant.TOKEN}',
   // OR
   // getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
 );

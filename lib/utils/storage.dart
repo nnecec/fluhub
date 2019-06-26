@@ -7,7 +7,6 @@ class LocalStorage {
     if (value is String) {
       func = prefs.setString;
     }
-
     if (value is int) {
       func = prefs.setInt;
     }
