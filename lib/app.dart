@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import './routes.dart';
-import './utils/api.dart';
+import './utils/graphql_client.dart';
 
 class App extends StatefulWidget {
   @override

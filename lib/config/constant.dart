@@ -1,3 +1,4 @@
 class Constant {
-  static const TOKEN = 'github_token';
+  static const TOKEN = 'access_token';
+  static const TOKEN_TYPE = 'token_type';
 }

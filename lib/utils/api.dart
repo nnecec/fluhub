@@ -1,23 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import '../config/constant.dart';
 
-final HttpLink httpLink = HttpLink(
-  uri: 'https://api.github.com/graphql',
-);
+class API {
+  Dio dio;
 
-final AuthLink authLink = AuthLink(
-  getToken: () => 'Bearer ${Constant.TOKEN}',
-  // OR
-  // getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
-);
+  API() {
+    dio = Dio();
+  }
+  get(String url, [Map<String, dynamic> query]) async {
+    Response res = await dio.get(url, queryParameters: query);
+    return res;
+  }
+}
 
-final Link link = authLink.concat(httpLink as Link);
-
-ValueNotifier<GraphQLClient> client = ValueNotifier(
-  GraphQLClient(
-    cache: InMemoryCache(),
-    link: link,
-  ),
-);
+final api = API();
