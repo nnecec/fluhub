@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './screen/Root.dart';
 import './screen/Account/Login.dart';
 
-import './screen/Home.dart';
+import './screen/Home/Home.dart';
 import './screen/Trending.dart';
 import './screen/Search.dart';
 import './screen/Me/Me.dart';
