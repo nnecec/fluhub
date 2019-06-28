@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import './redux/action.dart';
 
-class Home extends StatelessWidget {
+class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: SafeArea(
         child: Column(
           children: <Widget>[
             StoreConnector<StoreState, String>(
-              converter: (store) => store.state.counter.toString(),
-              builder: (context, counter) => Text(counter),
+              converter: (store) => store.state.count.toString(),
+              builder: (context, count) => Text(count),
             ),
             StoreConnector<StoreState, VoidCallback>(
               converter: (store) {
