@@ -28,6 +28,7 @@ class Login extends StatelessWidget {
         final access_token = resArray[0].split('access_token=')[1];
         final token_type = resArray[2].split('token_type=')[1];
 
+        
         LocalStorage.setItem(Constant.TOKEN, access_token);
         LocalStorage.setItem(Constant.TOKEN_TYPE, token_type);
       }

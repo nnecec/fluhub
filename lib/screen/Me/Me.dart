@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'package:fluhub/widgets/ListItem.dart';
-import 'package:fluhub/widgets/Card.dart';
+import '../../widgets/ListItem.dart';
+import '../../widgets/Card.dart';
 import './helper.dart';
 import './profileCard.dart';
+import '../../config/constant.dart';
+import '../../utils/storage.dart';
 
 class Me extends StatelessWidget {
   Widget queryUser() {
@@ -60,11 +62,13 @@ class Me extends StatelessWidget {
         ),
       );
 
-  Widget _renderUser(context) {
-    if (true) {
-      return _renderAccount(context);
-    }
-    return queryUser();
+  Future _getToken(context) async {
+    final access_token = await LocalStorage.getItem(Constant.TOKEN);
+    return access_token;
+    // if (true) {
+    //   return _renderAccount(context);
+    // }
+    // return queryUser();
   }
 
   Widget build(BuildContext context) {
@@ -73,7 +77,23 @@ class Me extends StatelessWidget {
         middle: Text('Me'),
       ),
       child: SafeArea(
-        child: _renderUser(context),
+        // child: _renderUser(context),
+        child: FutureBuilder(
+          future: _getToken(context),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            print(snapshot);
+            switch (snapshot.connectionState) {
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return Text('Loading...');
+              case ConnectionState.done:
+                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+                return Text('Result: ${snapshot.data}');
+              default:
+                return Text('initial');
+            }
+          },
+        ),
       ),
     );
   }

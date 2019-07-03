@@ -14,9 +14,7 @@ class Home extends StatelessWidget {
               builder: (context, counter) => Text(counter),
             ),
             StoreConnector<StoreState, VoidCallback>(
-              converter: (store) {
-                return () => store.dispatch(Actions.Increment);
-              },
+              converter: (store) => () => store.dispatch(Actions.Increment),
               builder: (context, callback) => CupertinoButton(
                     onPressed: callback,
                     child: Text('Increment'),
