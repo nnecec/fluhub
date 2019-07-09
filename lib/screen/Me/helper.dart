@@ -4,7 +4,6 @@ final String queryMe = '''
       avatarUrl
       bio
       company
-      email
       followers {
         totalCount
       }

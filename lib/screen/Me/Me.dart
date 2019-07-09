@@ -10,14 +10,15 @@ import '../../config/constant.dart';
 import '../../utils/storage.dart';
 
 class Me extends StatelessWidget {
-  Widget queryUser() {
+  Widget queryUser(context) {
     return Query(
       options: QueryOptions(
         document: queryMe,
       ),
       builder: (QueryResult result, {VoidCallback refetch}) {
         if (result.errors != null) {
-          return Text(result.errors.toString());
+          print(result.errors.toString());
+          return _renderAccount(context);
         }
         if (result.loading) {
           return Center(child: CupertinoActivityIndicator());
@@ -44,6 +45,13 @@ class Me extends StatelessWidget {
                 name: 'Following',
                 subtitle: viewer['following']['totalCount'].toString(),
               ),
+              CupertinoButton(
+                child: Text('Log out'),
+                color: CupertinoColors.destructiveRed,
+                onPressed: () async {
+                  await LocalStorage.removeItem(Constant.TOKEN);
+                },
+              )
             ])
           ],
         );
@@ -56,7 +64,6 @@ class Me extends StatelessWidget {
           color: CupertinoColors.extraLightBackgroundGray,
           child: Text('使用 GitHub 登录'),
           onPressed: () {
-            print(context);
             Navigator.of(context, rootNavigator: true).pushNamed('/login');
           },
         ),
@@ -65,10 +72,6 @@ class Me extends StatelessWidget {
   Future _getToken(context) async {
     final access_token = await LocalStorage.getItem(Constant.TOKEN);
     return access_token;
-    // if (true) {
-    //   return _renderAccount(context);
-    // }
-    // return queryUser();
   }
 
   Widget build(BuildContext context) {
@@ -81,16 +84,17 @@ class Me extends StatelessWidget {
         child: FutureBuilder(
           future: _getToken(context),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            print(snapshot);
             switch (snapshot.connectionState) {
               case ConnectionState.active:
               case ConnectionState.waiting:
                 return Text('Loading...');
               case ConnectionState.done:
-                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-                return Text('Result: ${snapshot.data}');
+                if (snapshot.hasData) {
+                  return queryUser(context);
+                }
+                return _renderAccount(context);
               default:
-                return Text('initial');
+                return _renderAccount(context);
             }
           },
         ),

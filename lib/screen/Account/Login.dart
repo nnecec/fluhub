@@ -8,9 +8,10 @@ import '../../utils/storage.dart';
 class Login extends StatelessWidget {
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
 
-  Login() {
+  Login(context) {
     flutterWebviewPlugin.onUrlChanged.listen((String url) async {
-      print(url);
+      // await flutterWebviewPlugin.cleanCookies();
+      print('onUrlChanged: $url');
       if (url.contains('code=')) {
         final code = url.split('code=')[1];
         print(code);
@@ -24,13 +25,16 @@ class Login extends StatelessWidget {
         );
 
         print(res);
-        final resArray = res.data.split('&');
-        final access_token = resArray[0].split('access_token=')[1];
-        final token_type = resArray[2].split('token_type=')[1];
+        if (res.data.contains('access_token=')) {
+          final resArray = res.data.split('&');
+          final access_token = resArray[0].split('access_token=')[1];
+          final token_type = resArray[2].split('token_type=')[1];
 
-        
-        LocalStorage.setItem(Constant.TOKEN, access_token);
-        LocalStorage.setItem(Constant.TOKEN_TYPE, token_type);
+          LocalStorage.setItem(Constant.TOKEN, access_token);
+          LocalStorage.setItem(Constant.TOKEN_TYPE, token_type);
+          Navigator.pop(context);
+          await flutterWebviewPlugin.cleanCookies();
+        }
       }
     });
   }
@@ -40,6 +44,9 @@ class Login extends StatelessWidget {
     return WebviewScaffold(
       url:
           'https://github.com/login/oauth/authorize?client_id=${AppConfig.clientID}',
+      // url: 'http://www.baidu.com',
+      clearCookies: true,
+      clearCache: true,
       appBar: CupertinoNavigationBar(
         middle: Text('Login with GitHub'),
       ),

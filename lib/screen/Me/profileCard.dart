@@ -24,25 +24,27 @@ class ProfileCard extends StatelessWidget {
           width: 100.0,
         ),
         DefaultTextStyle(
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: CupertinoColors.black,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(name),
-              Text(
-                login,
-                style: TextStyle(
-                  color: CupertinoColors.inactiveGray,
-                  fontSize: 14.0,
-                ),
+            style: TextStyle(
+              color: CupertinoColors.inactiveGray,
+              fontSize: 14.0,
+            ),
+            child: Container(
+              width: MediaQuery.of(context).size.width - 200,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    name,
+                    style: TextStyle(
+                      color: CupertinoColors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  Text(login),
+                  Text(bio),
+                ],
               ),
-              Text(bio),
-            ],
-          ),
-        )
+            ))
       ]),
     );
   }
