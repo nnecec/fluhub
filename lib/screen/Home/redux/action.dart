@@ -1,12 +1,12 @@
 import '../../../store/reducers.dart';
 
-enum Actions { Increment, Decrement }
+enum HomeActions { Increment, Decrement }
 
 StoreState homeReducer(state, dynamic action) {
-  if (action == Actions.Increment) {
+  if (action == HomeActions.Increment) {
     state.counter = state.counter + 1;
   }
-  if (action == Actions.Decrement) {
+  if (action == HomeActions.Decrement) {
     state.counter = state.counter - 1;
   }
 

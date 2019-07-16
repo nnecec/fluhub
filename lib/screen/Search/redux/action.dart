@@ -1,12 +1,12 @@
 import '../../../store/reducers.dart';
 
-enum Actions { Increment, Decrement }
+enum SearchActions { Increment, Decrement }
 
 StoreState searchReducer(state, dynamic action) {
-  if (action == Actions.Increment) {
+  if (action == SearchActions.Increment) {
     state.count = state.count + 1;
   }
-  if (action == Actions.Decrement) {
+  if (action == SearchActions.Decrement) {
     state.count = state.count - 1;
   }
 

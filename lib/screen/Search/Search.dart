@@ -15,7 +15,7 @@ class Search extends StatelessWidget {
             ),
             StoreConnector<StoreState, VoidCallback>(
               converter: (store) {
-                return () => store.dispatch(Actions.Increment);
+                return () => store.dispatch(SearchActions.Increment);
               },
               builder: (context, callback) => CupertinoButton(
                     onPressed: callback,
@@ -23,7 +23,7 @@ class Search extends StatelessWidget {
                   ),
             ),
             StoreConnector<StoreState, VoidCallback>(
-              converter: (store) => () => store.dispatch(Actions.Decrement),
+              converter: (store) => () => store.dispatch(SearchActions.Decrement),
               builder: (context, callback) => CupertinoButton(
                     onPressed: callback,
                     child: Text('Decrement'),
