@@ -21,7 +21,7 @@ class RootState extends State<Root> {
     return widget(context);
   }
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext rootContext) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         items: _buildTabBarItems(),
@@ -29,7 +29,7 @@ class RootState extends State<Root> {
       tabBuilder: (BuildContext context, int index) {
         return CupertinoTabView(
           builder: (BuildContext context) {
-            return handleTap(index, context);
+            return handleTap(index, rootContext);
           },
         );
       },

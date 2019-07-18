@@ -24,6 +24,7 @@ class AppState extends State<App> {
           title: 'FluHub',
           routes: routes,
           initialRoute: '/',
+          // home: Home()
         ),
       ),
     );

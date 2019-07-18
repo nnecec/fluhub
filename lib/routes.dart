@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import './screen/home/bloc/bloc.dart';
 
 import './screen/Root.dart';
 import './screen/Account/Login.dart';
@@ -17,7 +20,7 @@ List tabList = [
   {
     'icon': Icon(Icons.home),
     'title': Text('Home'),
-    'widget': (context) => Home()
+    'widget': (context) => Home(),
   },
   {
     'icon': Icon(Icons.trending_up),

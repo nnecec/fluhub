@@ -18,6 +18,9 @@ dependencies:
   flutter_redux: ^0.5.3
   redux_thunk: ^0.2.1
   redux_epics: ^0.10.6
+  bloc: ^0.14.4
+  flutter_bloc: ^0.19.1
+  equatable: ^0.3.0
 
 dev_dependencies:
   flutter_test:
