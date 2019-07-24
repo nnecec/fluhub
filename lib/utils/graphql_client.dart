@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../config/constant.dart';
@@ -12,8 +11,9 @@ final AuthLink authLink = AuthLink(
   // getToken: () => 'Bearer ${Constant.TOKEN}',
   // OR
   getToken: () async {
-    final access_token = await LocalStorage.getItem(Constant.TOKEN);
-    return 'Bearer $access_token';
+    final accessToken = await LocalStorage.getItem(Constant.TOKEN);
+    print('graphql_client: $accessToken');
+    return 'Bearer $accessToken';
   },
 );
 

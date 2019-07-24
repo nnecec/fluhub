@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
 
-import '../screen/Account/redux/account.dart';
+import '../screen/Account/redux/reducer.dart';
 import '../screen/Home/redux/action.dart';
 import '../screen/Search/redux/action.dart';
 

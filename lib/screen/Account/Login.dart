@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../../config/constant.dart';
 import '../../utils/api.dart';
 import '../../utils/storage.dart';
+import './redux/action.dart';
+import '../../store/store.dart';
 
 class Login extends StatelessWidget {
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
@@ -33,7 +39,8 @@ class Login extends StatelessWidget {
           LocalStorage.setItem(Constant.TOKEN, access_token);
           LocalStorage.setItem(Constant.TOKEN_TYPE, token_type);
           Navigator.pop(context);
-          await flutterWebviewPlugin.cleanCookies();
+
+          store.dispatch(SetAccessTokenAction(access_token));
         }
       }
     });
@@ -44,12 +51,16 @@ class Login extends StatelessWidget {
     return WebviewScaffold(
       url:
           'https://github.com/login/oauth/authorize?client_id=${AppConfig.clientID}',
-      // url: 'http://www.baidu.com',
       clearCookies: true,
       clearCache: true,
       appBar: CupertinoNavigationBar(
         middle: Text('Login with GitHub'),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    flutterWebviewPlugin.dispose();
   }
 }

@@ -8,6 +8,8 @@ import './helper.dart';
 import './profileCard.dart';
 import '../../config/constant.dart';
 import '../../utils/storage.dart';
+import '../Account/redux/action.dart';
+import '../../store/store.dart';
 
 class Me extends StatelessWidget {
   Widget queryUser(context) {
@@ -48,8 +50,33 @@ class Me extends StatelessWidget {
               CupertinoButton(
                 child: Text('Log out'),
                 color: CupertinoColors.destructiveRed,
-                onPressed: () async {
-                  await LocalStorage.removeItem(Constant.TOKEN);
+                onPressed: () {
+                  showCupertinoModalPopup(
+                    context: context,
+                    builder: (context) {
+                      return CupertinoActionSheet(
+                        title: Text('确认退出么？'),
+                        message: Text('退出后需要重新登陆才可使用'),
+                        cancelButton: CupertinoActionSheetAction(
+                          onPressed: () {
+                            Navigator.pop(context, 'cancel logout');
+                          },
+                          child: Text("取消"),
+                        ),
+                        actions: <Widget>[
+                          CupertinoActionSheetAction(
+                            isDestructiveAction: true,
+                            onPressed: () async {
+                              await LocalStorage.removeItem(Constant.TOKEN);
+                              store.dispatch(SetAccessTokenAction(''));
+                              Navigator.pop(context, 'confirm logout');
+                            },
+                            child: Text('确认'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               )
             ])
