@@ -19,7 +19,6 @@ class Me extends StatelessWidget {
       ),
       builder: (QueryResult result, {VoidCallback refetch}) {
         if (result.errors != null) {
-          print(result.errors.toString());
           return _renderAccount(context);
         }
         if (result.loading) {

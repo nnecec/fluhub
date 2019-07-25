@@ -12,15 +12,16 @@ import './redux/action.dart';
 import '../../store/store.dart';
 
 class Login extends StatelessWidget {
-  final flutterWebviewPlugin = new FlutterWebviewPlugin();
+  FlutterWebviewPlugin flutterWebviewPlugin;
 
   Login(context) {
+    flutterWebviewPlugin = FlutterWebviewPlugin();
     flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       // await flutterWebviewPlugin.cleanCookies();
       print('onUrlChanged: $url');
       if (url.contains('code=')) {
         final code = url.split('code=')[1];
-        print(code);
+
         final res = await api.get(
           'https://github.com/login/oauth/access_token',
           {
@@ -30,7 +31,6 @@ class Login extends StatelessWidget {
           },
         );
 
-        print(res);
         if (res.data.contains('access_token=')) {
           final resArray = res.data.split('&');
           final access_token = resArray[0].split('access_token=')[1];

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import './screen/home/bloc/bloc.dart';
 
 import './screen/Root.dart';
 import './screen/Account/Login.dart';
 
 import './screen/Home/Home.dart';
-import './screen/Trending.dart';
-import './screen/Search/Search.dart';
+import './screen/Trending/Trending.dart';
+import './screen/Explore/Explore.dart';
 import './screen/Me/Me.dart';
 
 final routes = {
@@ -25,12 +22,12 @@ List tabList = [
   {
     'icon': Icon(Icons.trending_up),
     'title': Text('Trending'),
-    'widget': (context) => Trending()
+    'widget': (context) => Trending(),
   },
   {
-    'icon': Icon(Icons.search),
-    'title': Text('Search'),
-    'widget': (context) => Search(),
+    'icon': Icon(Icons.explore),
+    'title': Text('Explore'),
+    'widget': (context) => Explore()
   },
   {
     'icon': Icon(Icons.person),

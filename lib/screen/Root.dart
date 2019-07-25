@@ -86,7 +86,6 @@ class RootState extends State<Root> {
           case ConnectionState.waiting:
             return Text('Loading...');
           case ConnectionState.done:
-            print(snapshot.data);
             if (snapshot.hasData) {
               store.dispatch(SetAccessTokenAction(snapshot.data));
             }
