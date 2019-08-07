@@ -13,7 +13,7 @@ final AuthLink authLink = AuthLink(
   // OR
   getToken: () async {
     final accessToken = await LocalStorage.getItem(Constant.TOKEN);
-    print('graphql_client: $accessToken');
+    // print('graphql_client: $accessToken');
     return 'Bearer $accessToken';
   },
 );

@@ -19,7 +19,7 @@ class Me extends StatelessWidget {
       ),
       builder: (QueryResult result, {VoidCallback refetch}) {
         if (result.errors != null) {
-          return _renderAccount(context);
+          // return _renderAccount(context);
         }
         if (result.loading) {
           return Center(child: CupertinoActivityIndicator());
