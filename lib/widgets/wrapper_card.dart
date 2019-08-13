@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
-class NCard extends StatelessWidget {
-  Widget child;
+class WrapperCard extends StatelessWidget {
+  final Widget child;
 
-  NCard(this.child);
+  WrapperCard({this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: CupertinoColors.white,
+        borderRadius: BorderRadius.all(Radius.circular(12.0)),
         boxShadow: [
           BoxShadow(
-            color: Color(0xF5F2F2F2),
+            color: CupertinoColors.lightBackgroundGray,
             blurRadius: 5.0,
-            spreadRadius: 2.0,
+            spreadRadius: 5.0,
+            offset: Offset(0, 8.0),
           ),
         ],
       ),

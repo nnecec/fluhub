@@ -1,7 +1,6 @@
 import 'dart:convert';
+import 'package:fluhub/screen/Home/event_card.dart';
 import 'package:fluhub/store/reducers.dart';
-import 'package:fluhub/widgets/repository_card.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import './redux/action.dart';
@@ -15,26 +14,44 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('News'),
-      ),
-      child: SafeArea(
-        child: FutureBuilder(
-          future: v3.get('/users/nnecec/received_events'),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData) {
-
-              final events = List.from(snapshot.data);
-              return ListView(
-                children: events.map((event) {
-                  final repoNameArr = event['repo']['name'].split('/');
-                  return RepositoryCard(repoNameArr[0], repoNameArr[1]);
-                }).toList(),
-              );
-            }
-            return Text('loading...');
-          },
-        ),
+      child: FutureBuilder(
+        future: v3.get('/users/nnecec/received_events'),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            final events = List.from(snapshot.data);
+            return Container(
+              decoration: BoxDecoration(
+                color: CupertinoColors.extraLightBackgroundGray,
+              ),
+              child: CustomScrollView(
+                slivers: <Widget>[
+                  CupertinoSliverNavigationBar(
+                    largeTitle: Text('News'),
+                  ),
+                  SliverSafeArea(
+                    top: false,
+                    minimum: EdgeInsets.only(top: 8),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          if (index < events.length) {
+                            final event = events[index];
+                            final user = event['actor'];
+                            final action = event['type'];
+                            final title = event['repo']['name'];
+                            return EventCard(user, action, title);
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          return Text('loading...');
+        },
       ),
     );
   }

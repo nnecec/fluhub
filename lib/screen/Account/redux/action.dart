@@ -1,5 +1,3 @@
-import '../../../store/reducers.dart';
-
 class SetAccessTokenAction {
   final String accessToken;
 

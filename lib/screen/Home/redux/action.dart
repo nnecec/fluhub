@@ -1,14 +1,14 @@
 import '../../../store/reducers.dart';
 
-enum HomeActions { Increment, Decrement }
+class HomeAction {
+  final int page;
 
-StoreState homeReducer(state, dynamic action) {
-  if (action == HomeActions.Increment) {
-    state.counter = state.counter + 1;
-  }
-  if (action == HomeActions.Decrement) {
-    state.counter = state.counter - 1;
-  }
+  HomeAction(this.page);
 
-  return state;
+  @override
+  String toString() {
+    return 'HomeAction {page: $page}';
+  }
 }
+
+

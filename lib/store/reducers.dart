@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
 
 import '../screen/Account/redux/reducer.dart';
-import '../screen/Home/redux/action.dart';
+import '../screen/Home/redux/reducer.dart';
 import '../screen/Trending/redux/action.dart';
 
 final reducers = combineReducers<StoreState>([

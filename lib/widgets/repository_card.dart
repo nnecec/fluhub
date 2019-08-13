@@ -1,50 +1,102 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../utils/color.dart';
+
 class RepositoryCard extends StatelessWidget {
-  String owner;
-  String name;
-  RepositoryCard(this.owner, this.name) {}
+  final String owner;
+  final String name;
+  RepositoryCard({
+    this.owner,
+    this.name,
+  }) {}
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xF5F2F2F2),
-            blurRadius: 5.0,
-            spreadRadius: 2.0,
+      padding: EdgeInsets.all(8.0),
+      child: DefaultTextStyle(
+        style: TextStyle(
+          fontSize: 14.0,
+          color: CupertinoColors.inactiveGray,
+        ),
+        child: Query(
+          options: QueryOptions(
+            document: queryRepo,
+            variables: {
+              'owner': this.owner,
+              'name': this.name,
+            },
           ),
-        ],
-      ),
-      margin: EdgeInsets.all(16.0),
-      padding: EdgeInsets.all(16.0),
-      child: Query(
-        options: QueryOptions(
-          document: queryRepo,
-          variables: {
-            'owner': this.owner,
-            'name': this.name,
+          builder: (QueryResult result, {VoidCallback refetch}) {
+            if (result.errors != null) {}
+            if (result.loading) {
+              return Center(child: CupertinoActivityIndicator());
+            }
+
+            final repo = result.data['repository'];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    '${this.owner}/${this.name}',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                      color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                if (repo['description'] != null)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8.0),
+                    child: Text(repo['description']),
+                  ),
+                DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    color: CupertinoColors.inactiveGray,
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      if (repo['primaryLanguage'] != null)
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 8.0,
+                              height: 8.0,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.0),
+                                  ),
+                                  color: HexColor(
+                                      repo['primaryLanguage']['color']),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 4.0, right: 8.0),
+                              child: Text(repo['primaryLanguage']['name']),
+                            )
+                          ],
+                        ),
+                      Icon(
+                        Icons.star,
+                        color: CupertinoColors.inactiveGray,
+                        size: 12.0,
+                      ),
+                      Text(repo['stargazers']['totalCount'].toString()),
+                    ],
+                  ),
+                ),
+              ],
+            );
           },
         ),
-        builder: (QueryResult result, {VoidCallback refetch}) {
-          if (result.errors != null) {}
-          if (result.loading) {
-            return Center(child: CupertinoActivityIndicator());
-          }
-
-          final repo = result.data['repository'];
-
-          return Column(
-            children: <Widget>[
-              Text('${this.owner}/${this.name}'),
-              if (repo['description'] != null) Text(repo['description']),
-              Text(repo['updatedAt'])
-            ],
-          );
-        },
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../widgets/ListItem.dart';
-import '../../widgets/Card.dart';
+import '../../widgets/wrapper_card.dart';
 import './helper.dart';
 import './profileCard.dart';
 import '../../config/constant.dart';
@@ -27,7 +27,7 @@ class Me extends StatelessWidget {
         final Map viewer = result.data['viewer'];
         return ListView(
           children: [
-            NCard(ProfileCard(viewer)),
+            WrapperCard(child: ProfileCard(viewer)),
             Column(children: [
               ListItem(
                 name: 'Repositories',

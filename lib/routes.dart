@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import './screen/Root.dart';
 import './screen/Account/Login.dart';
@@ -15,22 +15,22 @@ final routes = {
 
 List tabList = [
   {
-    'icon': Icon(Icons.home),
+    'icon': Icon(CupertinoIcons.home),
     'title': Text('Home'),
     'widget': (context) => Home(),
   },
   {
-    'icon': Icon(Icons.trending_up),
+    'icon': Icon(CupertinoIcons.shuffle),
     'title': Text('Trending'),
     'widget': (context) => Trending(),
   },
   {
-    'icon': Icon(Icons.explore),
+    'icon': Icon(CupertinoIcons.search),
     'title': Text('Explore'),
     'widget': (context) => Explore()
   },
   {
-    'icon': Icon(Icons.person),
+    'icon': Icon(CupertinoIcons.person),
     'title': Text('Me'),
     'widget': (context) => Me(),
   },
