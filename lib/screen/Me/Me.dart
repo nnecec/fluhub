@@ -71,6 +71,7 @@ class Me extends StatelessWidget {
                               name: 'Following',
                               subtitle:
                                   viewer['following']['totalCount'].toString(),
+                              bordered: false,
                             )
                           ])),
                           CupertinoButton(

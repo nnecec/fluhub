@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class ListItem extends StatelessWidget {
-  ListItem({
-    this.name,
-    this.subtitle,
-    this.before,
-    this.after,
-  });
+  ListItem({this.name, this.subtitle, this.before, this.after, this.bordered});
 
   final String name;
   final String subtitle;
   final Widget before;
   final Widget after;
+  final bool bordered;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +25,14 @@ class ListItem extends StatelessWidget {
             ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Color(0xFFBCBBC1), width: 0.0),
-                ),
-              ),
+              decoration: this.bordered == false
+                  ? null
+                  : BoxDecoration(
+                      border: Border(
+                        bottom:
+                            BorderSide(color: Color(0xFFBCBBC1), width: 0.0),
+                      ),
+                    ),
               child: Row(
                 children: <Widget>[
                   Text(name),
