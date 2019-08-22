@@ -10,7 +10,7 @@ import './screen/Me/Me.dart';
 
 final routes = {
   '/': (context) => Root(),
-  '/login': (context) => Login(context),
+  // '/login': (context) => Login(context),
 };
 
 List tabList = [

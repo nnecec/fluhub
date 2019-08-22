@@ -17,16 +17,16 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: CupertinoColors.white,
-      height: 60.0,
-      padding: EdgeInsets.only(top: 9.0),
+      height: 50.0,
       child: Row(
         children: <Widget>[
           // Icon
-          Container(
-            width: 38.0,
-            margin: EdgeInsets.only(top: 10),
-            child: before,
-          ),
+          if (before != null)
+            Container(
+              width: 38.0,
+              margin: EdgeInsets.only(top: 10),
+              child: before,
+            ),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -34,15 +34,9 @@ class ListItem extends StatelessWidget {
                   bottom: BorderSide(color: Color(0xFFBCBBC1), width: 0.0),
                 ),
               ),
-              padding: EdgeInsets.only(left: 1.0, bottom: 9.0, right: 10.0),
               child: Row(
                 children: <Widget>[
-                  Text(
-                    name,
-                    style: TextStyle(
-                      letterSpacing: -0.18,
-                    ),
-                  ),
+                  Text(name),
                   Expanded(
                     child: Column(),
                   ),
@@ -50,7 +44,7 @@ class ListItem extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       color: CupertinoColors.inactiveGray,
-                      fontSize: 14.0,
+                      fontSize: 12.0,
                       letterSpacing: -0.41,
                     ),
                   ),

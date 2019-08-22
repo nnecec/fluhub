@@ -7,6 +7,7 @@ import '../config/constant.dart';
 import '../utils/storage.dart';
 import './Account/redux/action.dart';
 import '../store/store.dart';
+import '../screen/Account/Login.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -43,21 +44,30 @@ class RootState extends State<Root> {
     );
   }
 
-  Future _getToken(context) async {
+  Future _getToken() async {
     // final access_token = await LocalStorage.getItem(Constant.TOKEN);
     final access_token = await LocalStorage.getItem(Constant.TOKEN);
 
     return access_token;
   }
 
-  Widget _renderLogin(context) {
+  Widget _renderLogin() {
     return CupertinoPageScaffold(
+      backgroundColor: CupertinoColors.lightBackgroundGray,
       child: Center(
         child: CupertinoButton(
           color: CupertinoColors.activeBlue,
           child: Text('使用 GitHub 登录'),
           onPressed: () async {
-            Navigator.of(context, rootNavigator: true).pushNamed('/login');
+            // Navigator.of(context, rootNavigator: true).pushNamed('/login');
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return CupertinoPopupSurface(
+                  child: Login(context),
+                );
+              },
+            );
           },
         ),
       ),
@@ -71,7 +81,7 @@ class RootState extends State<Root> {
         if (accessToken.length > 0) {
           return _renderTabsViewer(context);
         } else {
-          return _renderLogin(context);
+          return _renderLogin();
         }
       },
     );
@@ -79,7 +89,7 @@ class RootState extends State<Root> {
 
   Widget build(BuildContext rootContext) {
     return FutureBuilder(
-      future: _getToken(context),
+      future: _getToken(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

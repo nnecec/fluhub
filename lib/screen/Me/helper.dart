@@ -24,6 +24,18 @@ final String queryMe = '''
         totalCount
       }
       websiteUrl
+      contributionsCollection{
+        contributionCalendar{
+          totalContributions
+          weeks{
+            contributionDays{
+              date
+              contributionCount
+              color
+            }
+          }
+        }
+      }
     }
   }
 ''';

@@ -11,14 +11,13 @@ class WrapperCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: CupertinoColors.white,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.lightBackgroundGray,
-            blurRadius: 5.0,
-            spreadRadius: 5.0,
-            offset: Offset(0, 8.0),
-          ),
-        ],
+        // boxShadow: [
+          // BoxShadow(
+            // color: CupertinoColors.lightBackgroundGray,
+            // blurRadius: 8.0,
+            // offset: Offset(0, 2.0),
+          // ),
+        // ],
       ),
       margin: EdgeInsets.all(16.0),
       padding: EdgeInsets.all(16.0),

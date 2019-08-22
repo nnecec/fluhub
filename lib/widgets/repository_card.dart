@@ -29,7 +29,7 @@ class RepositoryCard extends StatelessWidget {
               'name': this.name,
             },
           ),
-          builder: (QueryResult result, {VoidCallback refetch}) {
+          builder: (QueryResult result, {VoidCallback refetch, FetchMore fetchMore}) {
             if (result.errors != null) {}
             if (result.loading) {
               return Center(child: CupertinoActivityIndicator());

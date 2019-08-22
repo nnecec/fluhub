@@ -29,7 +29,7 @@ class ProfileCard extends StatelessWidget {
               fontSize: 14.0,
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width - 200,
+              width: MediaQuery.of(context).size.width - 180,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -40,7 +40,10 @@ class ProfileCard extends StatelessWidget {
                       fontSize: 16.0,
                     ),
                   ),
-                  Text(login),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10.0),
+                    child: Text(login),
+                  ),
                   Text(bio),
                 ],
               ),

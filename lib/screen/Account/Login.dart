@@ -51,8 +51,8 @@ class Login extends StatelessWidget {
     return WebviewScaffold(
       url:
           'https://github.com/login/oauth/authorize?client_id=${AppConfig.clientID}',
-      clearCookies: true,
-      clearCache: true,
+      // clearCookies: true,
+      // clearCache: true,
       appBar: CupertinoNavigationBar(
         middle: Text('Login with GitHub'),
       ),
