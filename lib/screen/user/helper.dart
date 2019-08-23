@@ -1,4 +1,4 @@
-final String queryMe = '''
+final String queryUser = '''
   query {
     viewer {
       avatarUrl
@@ -24,11 +24,11 @@ final String queryMe = '''
         totalCount
       }
       websiteUrl
-      contributionsCollection{
-        contributionCalendar{
+      contributionsCollection {
+        contributionCalendar {
           totalContributions
           weeks{
-            contributionDays{
+            contributionDays {
               date
               contributionCount
               color

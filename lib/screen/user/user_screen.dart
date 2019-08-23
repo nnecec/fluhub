@@ -13,12 +13,12 @@ import '../../utils/storage.dart';
 import '../Account/redux/action.dart';
 import '../../store/store.dart';
 
-class Me extends StatelessWidget {
+class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         child: Query(
       options: QueryOptions(
-        document: queryMe,
+        document: queryUser,
       ),
       builder: (QueryResult result,
           {VoidCallback refetch, FetchMore fetchMore}) {

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import '../utils/color.dart';
 
 class ContributionCalendar {

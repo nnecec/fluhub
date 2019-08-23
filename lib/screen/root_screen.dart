@@ -7,14 +7,14 @@ import '../config/constant.dart';
 import '../utils/storage.dart';
 import './Account/redux/action.dart';
 import '../store/store.dart';
-import '../screen/Account/Login.dart';
+import '../screen/account/login_screen.dart';
 
-class Root extends StatefulWidget {
+class RootScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => RootState();
+  State<StatefulWidget> createState() => RootScreenState();
 }
 
-class RootState extends State<Root> {
+class RootScreenState extends State<RootScreen> {
   List<BottomNavigationBarItem> _buildTabBarItems() {
     return tabList
         .map((tab) => BottomNavigationBarItem(
@@ -64,7 +64,7 @@ class RootState extends State<Root> {
               context: context,
               builder: (context) {
                 return CupertinoPopupSurface(
-                  child: Login(context),
+                  child: LoginScreen(context),
                 );
               },
             );

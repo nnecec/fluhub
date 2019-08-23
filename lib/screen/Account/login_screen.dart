@@ -11,10 +11,10 @@ import '../../utils/storage.dart';
 import './redux/action.dart';
 import '../../store/store.dart';
 
-class Login extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   FlutterWebviewPlugin flutterWebviewPlugin;
 
-  Login(context) {
+  LoginScreen(context) {
     flutterWebviewPlugin = FlutterWebviewPlugin();
     flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       // await flutterWebviewPlugin.cleanCookies();
