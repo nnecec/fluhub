@@ -20,10 +20,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final QueryResult result = await githubClient.query(
           QueryOptions(document: queryUser),
         );
-        print(result);
         yield UserStateSuccess(user: result.data['viewer']);
       } catch (error) {
-        print(error);
         yield UserStateError(error);
       }
     }

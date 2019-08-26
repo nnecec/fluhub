@@ -47,12 +47,10 @@ class UserBlocScreen extends StatelessWidget {
                   (context, index) {
                     return BlocBuilder<UserBloc, UserState>(
                       builder: (BuildContext context, UserState state) {
-                        print('$state, $context');
                         if (state is UserStateLoading) {
                           return Center(child: CupertinoActivityIndicator());
                         }
                         if (state is UserStateSuccess) {
-                          print(state.user);
                           final user = state.user;
 
                           return Column(

@@ -10,7 +10,6 @@ class ContributionCard extends StatelessWidget {
   Map contributionCalendar;
 
   ContributionCard(contributionCalendar) {
-    print(contributionCalendar);
     this.contributionCalendar = contributionCalendar;
   }
 

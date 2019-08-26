@@ -12,7 +12,7 @@ class ProfileCard extends StatelessWidget {
     bio = profile['bio'];
     name = profile['name'];
     login = profile['login'];
-    // status = profile['status']['emoji'] + profile['status']['message'];
+    status = profile['status']['emoji'] + profile['status']['message'];
   }
 
   @override
