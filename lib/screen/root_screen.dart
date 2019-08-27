@@ -5,7 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../routes.dart';
 import '../config/constant.dart';
 import '../utils/storage.dart';
-import './Account/redux/action.dart';
+import './account/redux/action.dart';
 import '../store/store.dart';
 import '../screen/account/login_screen.dart';
 
@@ -24,7 +24,7 @@ class RootScreenState extends State<RootScreen> {
         .toList();
   }
 
-  handleTap(value, context) {
+  Widget handleTap(value, context) {
     final widget = tabList[value]['widget'];
     return widget(context);
   }
@@ -96,7 +96,7 @@ class RootScreenState extends State<RootScreen> {
           case ConnectionState.waiting:
             return Text('Loading...');
           case ConnectionState.done:
-            if (snapshot.hasData) {
+            if (snapshot.hasData && store.state.accessToken.isEmpty) {
               store.dispatch(SetAccessTokenAction(snapshot.data));
             }
             return _renderRoot();

@@ -11,9 +11,6 @@ class HomeScreen extends StatelessWidget {
           if (snapshot.hasData) {
             final events = List.from(snapshot.data);
             return Container(
-              decoration: BoxDecoration(
-                color: CupertinoColors.extraLightBackgroundGray,
-              ),
               child: CustomScrollView(
                 slivers: <Widget>[
                   CupertinoSliverNavigationBar(

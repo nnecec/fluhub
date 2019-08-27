@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:redux/redux.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 

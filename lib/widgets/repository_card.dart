@@ -14,12 +14,14 @@ class RepositoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CupertinoThemeData theme = CupertinoTheme.of(context);
+
     return Container(
       padding: EdgeInsets.all(8.0),
       child: DefaultTextStyle(
         style: TextStyle(
           fontSize: 14.0,
-          color: CupertinoColors.inactiveGray,
+          color: theme.primaryColor,
         ),
         child: Query(
           options: QueryOptions(
@@ -29,7 +31,8 @@ class RepositoryCard extends StatelessWidget {
               'name': this.name,
             },
           ),
-          builder: (QueryResult result, {VoidCallback refetch, FetchMore fetchMore}) {
+          builder: (QueryResult result,
+              {VoidCallback refetch, FetchMore fetchMore}) {
             if (result.errors != null) {}
             if (result.loading) {
               return Center(child: CupertinoActivityIndicator());
@@ -46,7 +49,7 @@ class RepositoryCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
-                      color: CupertinoColors.black,
+                      color: theme.primaryColor,
                     ),
                   ),
                 ),
@@ -58,7 +61,7 @@ class RepositoryCard extends StatelessWidget {
                 DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 12.0,
-                    color: CupertinoColors.inactiveGray,
+                    color: theme.primaryColor,
                   ),
                   child: Row(
                     children: <Widget>[
@@ -86,7 +89,7 @@ class RepositoryCard extends StatelessWidget {
                         ),
                       Icon(
                         Icons.star,
-                        color: CupertinoColors.inactiveGray,
+                        color: theme.primaryColor,
                         size: 12.0,
                       ),
                       Text(repo['stargazers']['totalCount'].toString()),

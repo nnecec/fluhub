@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluhub/widgets/repository_card.dart';
 import 'package:fluhub/widgets/wrapper_card.dart';
 
-
 class EventCard extends StatelessWidget {
   dynamic user;
   String action;
@@ -20,6 +19,7 @@ class EventCard extends StatelessWidget {
       action = 'forked';
     }
     final repoNameArr = title.split('/');
+    final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return WrapperCard(
       // margin: EdgeInsets.all(10.0),
@@ -37,7 +37,7 @@ class EventCard extends StatelessWidget {
                   margin: EdgeInsets.only(right: 8.0),
                   child: Text(
                     user['login'],
-                    style: TextStyle(color: CupertinoColors.black),
+                    style: TextStyle(color: theme.primaryColor),
                   ),
                 ),
                 Text(action),

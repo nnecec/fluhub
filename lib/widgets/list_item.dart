@@ -11,8 +11,9 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CupertinoThemeData theme = CupertinoTheme.of(context);
+
     return Container(
-      color: CupertinoColors.white,
       height: 50.0,
       child: Row(
         children: <Widget>[
@@ -39,14 +40,15 @@ class ListItem extends StatelessWidget {
                   Expanded(
                     child: Column(),
                   ),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: CupertinoColors.inactiveGray,
-                      fontSize: 12.0,
-                      letterSpacing: -0.41,
+                  if (subtitle != null)
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: CupertinoColors.inactiveGray,
+                        fontSize: 12.0,
+                        letterSpacing: -0.41,
+                      ),
                     ),
-                  ),
                   Padding(
                     padding: EdgeInsets.only(left: 9.0),
                     child: after,

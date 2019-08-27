@@ -1,16 +1,16 @@
+import 'package:fluhub/store/themeData/action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../widgets/list_item.dart';
 import '../../widgets/wrapper_card.dart';
 import '../../widgets/profile_card.dart';
 import '../../widgets/contribution_card.dart';
 
-import './helper.dart';
 import '../../config/constant.dart';
 import '../../utils/storage.dart';
-import '../Account/redux/action.dart';
+import '../../utils/theme.dart';
+import '../account/redux/action.dart';
 import '../../store/store.dart';
 
 import './bloc/bloc.dart';
@@ -33,7 +33,6 @@ class UserBlocScreen extends StatelessWidget {
 
     return CupertinoPageScaffold(
       child: Container(
-        color: CupertinoColors.extraLightBackgroundGray,
         child: CustomScrollView(
           slivers: <Widget>[
             CupertinoSliverNavigationBar(
@@ -61,30 +60,34 @@ class UserBlocScreen extends StatelessWidget {
                                       user['contributionsCollection']
                                           ['contributionCalendar'])),
                               WrapperCard(
-                                  child: Column(children: [
-                                ListItem(
-                                  name: 'Repositories',
-                                  subtitle: user['repositories']['totalCount']
-                                      .toString(),
+                                child: Column(
+                                  children: [
+                                    ListItem(
+                                      name: 'Repositories',
+                                      subtitle: user['repositories']
+                                              ['totalCount']
+                                          .toString(),
+                                    ),
+                                    ListItem(
+                                      name: 'Stars',
+                                      subtitle: user['starredRepositories']
+                                              ['totalCount']
+                                          .toString(),
+                                    ),
+                                    ListItem(
+                                      name: 'Followers',
+                                      subtitle: user['followers']['totalCount']
+                                          .toString(),
+                                    ),
+                                    ListItem(
+                                      name: 'Following',
+                                      subtitle: user['following']['totalCount']
+                                          .toString(),
+                                      bordered: false,
+                                    )
+                                  ],
                                 ),
-                                ListItem(
-                                  name: 'Stars',
-                                  subtitle: user['starredRepositories']
-                                          ['totalCount']
-                                      .toString(),
-                                ),
-                                ListItem(
-                                  name: 'Followers',
-                                  subtitle: user['followers']['totalCount']
-                                      .toString(),
-                                ),
-                                ListItem(
-                                  name: 'Following',
-                                  subtitle: user['following']['totalCount']
-                                      .toString(),
-                                  bordered: false,
-                                )
-                              ])),
+                              ),
                               CupertinoButton(
                                 child: Text('Log out'),
                                 color: CupertinoColors.destructiveRed,
@@ -121,7 +124,29 @@ class UserBlocScreen extends StatelessWidget {
                                     },
                                   );
                                 },
-                              )
+                              ),
+                              WrapperCard(
+                                child: Column(
+                                  children: [
+                                    ListItem(
+                                      name: 'Dark Mode',
+                                      after: CupertinoSwitch(
+                                        value: store.state.themeData == dark,
+                                        onChanged: (bool value) {
+                                          print(value);
+                                          if (value == false) {
+                                            store.dispatch(
+                                                CustomThemeData(light));
+                                          } else if (value == true) {
+                                            store.dispatch(
+                                                CustomThemeData(dark));
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           );
                         }

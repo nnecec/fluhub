@@ -17,6 +17,8 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CupertinoThemeData theme = CupertinoTheme.of(context);
+
     return Container(
       child: Row(children: [
         Image.network(
@@ -25,7 +27,7 @@ class ProfileCard extends StatelessWidget {
         ),
         DefaultTextStyle(
             style: TextStyle(
-              color: CupertinoColors.inactiveGray,
+              color: theme.primaryColor,
               fontSize: 14.0,
             ),
             child: Container(
@@ -36,7 +38,7 @@ class ProfileCard extends StatelessWidget {
                   Text(
                     name,
                     style: TextStyle(
-                      color: CupertinoColors.black,
+                      color: theme.primaryColor,
                       fontSize: 16.0,
                     ),
                   ),

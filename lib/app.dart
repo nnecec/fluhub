@@ -1,3 +1,5 @@
+import 'package:fluhub/store/reducers.dart';
+import 'package:fluhub/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -14,19 +16,24 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
+
   @override
   Widget build(BuildContext context) {
-    return StoreProvider(
-      store: store,
-      child: GraphQLProvider(
-        client: client,
-        child: CupertinoApp(
-          title: 'FluHub',
-          routes: routes,
-          initialRoute: '/',
-          // home: Home()
-        ),
-      ),
-    );
+    return StoreProvider<StoreState>(
+        store: store,
+        child: StoreBuilder<StoreState>(
+          builder: (BuildContext context, store) {
+            return GraphQLProvider(
+              client: client,
+              child: CupertinoApp(
+                title: 'FluHub',
+                routes: routes,
+                initialRoute: '/',
+                theme: store.state.themeData,
+                // home: Home()
+              ),
+            );
+          },
+        ));
   }
 }

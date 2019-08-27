@@ -21,6 +21,7 @@ class UserStateSuccess extends UserState {
   final dynamic user;
 
   UserStateSuccess({@required this.user}) : super([user]);
+  
   @override
   String toString() => 'UserStateSuccess';
 }

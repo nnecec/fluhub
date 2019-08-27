@@ -1,27 +1,29 @@
 import 'package:redux/redux.dart';
+import 'package:flutter/cupertino.dart';
+import '../utils/theme.dart';
 
-import '../screen/Account/redux/reducer.dart';
-import '../screen/Home/redux/reducer.dart';
-import '../screen/Trending/redux/action.dart';
+import '../screen/account/redux/reducer.dart';
+
+import './themeData/reducer.dart';
 
 final reducers = combineReducers<StoreState>([
   accountReducer,
-  homeReducer,
-  searchReducer,
+  themeReducer,
 ]);
 
 class StoreState {
-  int counter;
-  int count;
   String accessToken;
 
-  StoreState({this.counter, this.count, this.accessToken});
+  // User userInfo;
+  CupertinoThemeData themeData;
+  Locale locale;
+
+  StoreState({this.accessToken, this.themeData});
 
   factory StoreState.initial() {
     return StoreState(
-      counter: 0,
-      count: 0,
       accessToken: '',
+      themeData: dark,
     );
   }
 }
