@@ -6,11 +6,11 @@ abstract class UserEvent extends Equatable {
   UserEvent([List props = const <dynamic>[]]) : super(props);
 }
 
-class GetUser extends UserEvent {
+class UserDetail extends UserEvent {
   final String login;
 
-  GetUser({@required this.login}): super([login]);
+  UserDetail({@required this.login}): super([login]);
 
   @override
-  String toString() => 'GetUser { login: $login }';
+  String toString() => 'UserDetail { login: $login }';
 }

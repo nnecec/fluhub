@@ -20,18 +20,20 @@ class ProfileCard extends StatelessWidget {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return Container(
-      child: Row(children: [
-        Image.network(
-          avatarUrl,
-          width: 100.0,
-        ),
-        DefaultTextStyle(
+      child: Row(
+        children: [
+          Image.network(
+            avatarUrl,
+            width: 100.0,
+          ),
+          DefaultTextStyle(
             style: TextStyle(
               color: theme.primaryColor,
               fontSize: 14.0,
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width - 180,
+              width: MediaQuery.of(context).size.width - 200,
+              padding: EdgeInsets.only(left: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -49,8 +51,10 @@ class ProfileCard extends StatelessWidget {
                   Text(bio),
                 ],
               ),
-            ))
-      ]),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

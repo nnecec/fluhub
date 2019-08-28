@@ -44,7 +44,7 @@ class ListItem extends StatelessWidget {
                     Text(
                       subtitle,
                       style: TextStyle(
-                        color: CupertinoColors.inactiveGray,
+                        color: theme.primaryColor,
                         fontSize: 12.0,
                         letterSpacing: -0.41,
                       ),

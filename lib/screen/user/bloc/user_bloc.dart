@@ -14,7 +14,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> mapEventToState(
     UserEvent event,
   ) async* {
-    if (event is GetUser) {
+    if (event is UserDetail) {
       yield UserStateLoading();
       try {
         final QueryResult result = await githubClient.query(

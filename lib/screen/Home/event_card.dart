@@ -43,7 +43,7 @@ class EventCard extends StatelessWidget {
                 Text(action),
               ],
             ),
-            RepositoryCard(owner: repoNameArr[0], name: repoNameArr[1]),
+            // RepositoryCard(owner: repoNameArr[0], name: repoNameArr[1]),
           ],
         ),
       ),

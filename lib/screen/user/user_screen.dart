@@ -1,6 +1,6 @@
-import 'package:fluhub/store/themeData/action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/list_item.dart';
 import '../../widgets/wrapper_card.dart';
@@ -10,11 +10,12 @@ import '../../widgets/contribution_card.dart';
 import '../../config/constant.dart';
 import '../../utils/storage.dart';
 import '../../utils/theme.dart';
-import '../account/redux/action.dart';
+
 import '../../store/store.dart';
+import '../../store/themeData/action.dart';
+import '../account/redux/action.dart';
 
 import './bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class UserBlocScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _userBloc = BlocProvider.of<UserBloc>(context);
-    _userBloc.dispatch(GetUser(login: 'nnecec'));
+    _userBloc.dispatch(UserDetail(login: 'nnecec'));
 
     return CupertinoPageScaffold(
       child: Container(
