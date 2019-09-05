@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         }
 
-                        return Text('loading...');
+                        return Text('');
                       },
                     );
                   },

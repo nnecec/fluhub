@@ -21,6 +21,8 @@ class RootScreen extends StatefulWidget {
 
 class RootScreenState extends State<RootScreen> {
   int currentTab = 0;
+  final CupertinoTabController _tabController =
+      CupertinoTabController(initialIndex: 0);
 
   List<BottomNavigationBarItem> _buildTabBarItems() {
     return tabList
@@ -32,10 +34,10 @@ class RootScreenState extends State<RootScreen> {
   }
 
   void handleTap(value) {
-    print(value);
     setState(() {
       currentTab = value;
     });
+    _tabController.index = value;
   }
 
   Widget renderTabView() {
@@ -61,6 +63,7 @@ class RootScreenState extends State<RootScreen> {
         items: _buildTabBarItems(),
         onTap: handleTap,
       ),
+      controller: _tabController,
       tabBuilder: (BuildContext context, int index) {
         return renderTabView();
       },
@@ -117,7 +120,7 @@ class RootScreenState extends State<RootScreen> {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
           case ConnectionState.waiting:
-            return Text('Loading...');
+            // return Text('Loading...');
           case ConnectionState.done:
             if (snapshot.hasData && store.state.accessToken.isEmpty) {
               store.dispatch(SetAccessTokenAction(snapshot.data));
