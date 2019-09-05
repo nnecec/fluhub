@@ -18,19 +18,9 @@ import '../account/redux/action.dart';
 import './bloc/bloc.dart';
 
 class UserScreen extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      builder: (context) => UserBloc(),
-      child: UserBlocScreen(),
-    );
-  }
-}
-
-class UserBlocScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _userBloc = BlocProvider.of<UserBloc>(context);
-    _userBloc.dispatch(UserDetail(login: 'nnecec'));
 
     return CupertinoPageScaffold(
       child: Container(
@@ -47,6 +37,9 @@ class UserBlocScreen extends StatelessWidget {
                   (context, index) {
                     return BlocBuilder<UserBloc, UserState>(
                       builder: (BuildContext context, UserState state) {
+                        if (state is UserStateEmpty) {
+                          _userBloc.dispatch(UserDetail(login: 'nnecec'));
+                        }
                         if (state is UserStateLoading) {
                           return Center(child: CupertinoActivityIndicator());
                         }

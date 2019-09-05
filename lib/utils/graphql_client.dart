@@ -20,14 +20,9 @@ final AuthLink authLink = AuthLink(
 
 final Link link = authLink.concat(httpLink);
 
-ValueNotifier<GraphQLClient> client = ValueNotifier(
-  GraphQLClient(
-    cache: InMemoryCache(),
-    link: link,
-  ),
-);
-
 GraphQLClient githubClient = GraphQLClient(
   cache: InMemoryCache(),
   link: link,
 );
+
+ValueNotifier<GraphQLClient> client = ValueNotifier(githubClient);

@@ -13,7 +13,7 @@ class GitHubV3Client {
       ),
     );
   }
-  get(String url, [Map<String, dynamic> query]) async {
+  get(String url, [Map<String, dynamic> query = const {}]) async {
     Response res = await dio.get(url, queryParameters: query);
     return res.data;
   }

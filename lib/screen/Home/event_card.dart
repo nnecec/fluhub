@@ -22,8 +22,6 @@ class EventCard extends StatelessWidget {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return WrapperCard(
-      // margin: EdgeInsets.all(10.0),
-      // padding: EdgeInsets.all(12.0),
       child: DefaultTextStyle(
         style: TextStyle(
           fontSize: 12.0,
