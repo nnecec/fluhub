@@ -71,9 +71,7 @@ class RootScreenState extends State<RootScreen> {
   }
 
   Future _getToken() async {
-    // final access_token = await LocalStorage.getItem(Constant.TOKEN);
-    final access_token = await LocalStorage.getItem(Constant.TOKEN);
-
+    final String access_token = await LocalStorage.getItem(Constant.TOKEN);
     return access_token;
   }
 
@@ -85,7 +83,6 @@ class RootScreenState extends State<RootScreen> {
           color: CupertinoColors.activeBlue,
           child: Text('使用 GitHub 登录'),
           onPressed: () async {
-            // Navigator.of(context, rootNavigator: true).pushNamed('/login');
             showCupertinoModalPopup(
               context: context,
               builder: (context) {
@@ -117,18 +114,13 @@ class RootScreenState extends State<RootScreen> {
     return FutureBuilder(
       future: _getToken(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-            // return Text('Loading...');
-          case ConnectionState.done:
-            if (snapshot.hasData && store.state.accessToken.isEmpty) {
-              store.dispatch(SetAccessTokenAction(snapshot.data));
-            }
-            return _renderRoot();
-          default:
-            return _renderRoot();
+        if (snapshot.connectionState == ConnectionState.done) {
+          // 
+          if (snapshot.hasData && store.state.accessToken.isEmpty) {
+            store.dispatch(SetAccessTokenAction(snapshot.data));
+          }
         }
+        return _renderRoot();
       },
     );
   }
