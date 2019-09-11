@@ -3,24 +3,29 @@ import 'package:fluhub/widgets/repository_card.dart';
 import 'package:fluhub/widgets/wrapper_card.dart';
 
 class EventCard extends StatelessWidget {
-  dynamic user;
-  String action;
-  String title;
-  EventCard(this.user, this.action, this.title) {}
+  final event;
+  EventCard(this.event) {}
+
+  String parseActionName() {
+    final type = event['type'];
+    var action = '';
+    if (type == 'WatchEvent') {
+      action = 'started';
+    } else if (type == 'CreateEvent') {
+      action = 'created';
+    } else if (type == 'ForkEvent') {
+      action = 'forked';
+    }
+    return action;
+  }
 
   @override
   Widget build(BuildContext context) {
-    var action = '';
-    if (this.action == 'WatchEvent') {
-      action = 'started';
-    } else if (this.action == 'CreateEvent') {
-      action = 'created';
-    } else if (this.action == 'ForkEvent') {
-      action = 'forked';
-    }
-    final repoNameArr = title.split('/');
     final CupertinoThemeData theme = CupertinoTheme.of(context);
-
+    final action = parseActionName();
+    final login = event['actor']['login'];
+    final repository = event['repositoryDetail'];
+    final repoName = event['repo']['name'];
     return WrapperCard(
       child: DefaultTextStyle(
         style: TextStyle(
@@ -34,14 +39,18 @@ class EventCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(right: 8.0),
                   child: Text(
-                    user['login'],
+                    login,
                     style: TextStyle(color: theme.primaryColor),
                   ),
                 ),
                 Text(action),
               ],
             ),
-            // RepositoryCard(owner: repoNameArr[0], name: repoNameArr[1]),
+            if (repository != null)
+              RepositoryCard(
+                repository: repository['repository'],
+                name: repoName,
+              ),
           ],
         ),
       ),

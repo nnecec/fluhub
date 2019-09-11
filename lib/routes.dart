@@ -6,9 +6,11 @@ import './screen/home/home_screen.dart';
 import './screen/trending/trending_screen.dart';
 import './screen/explore/explore_screen.dart';
 import './screen/user/user_screen.dart';
+import './screen/repository/repository_screen.dart';
 
 final routes = {
   '/': (context) => RootScreen(),
+  '/repository': (context) => RepositoryScreen(),
 };
 
 List tabList = [

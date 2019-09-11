@@ -115,7 +115,7 @@ class RootScreenState extends State<RootScreen> {
       future: _getToken(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          // 
+          //
           if (snapshot.hasData && store.state.accessToken.isEmpty) {
             store.dispatch(SetAccessTokenAction(snapshot.data));
           }

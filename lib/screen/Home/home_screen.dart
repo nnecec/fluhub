@@ -8,7 +8,6 @@ import './event_card.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(context);
     final _homeBloc = BlocProvider.of<HomeBloc>(context);
 
     return CupertinoPageScaffold(
@@ -32,13 +31,9 @@ class HomeScreen extends StatelessWidget {
                         if (state is HomeStateSuccess) {
                           return Container(
                             child: Column(
-                              children: state.events.map<Widget>((event) {
-                                return EventCard(
-                                  event['actor'],
-                                  event['type'],
-                                  event['repo']['name'],
-                                );
-                              }).toList(),
+                              children: state.events
+                                  .map<Widget>((event) => EventCard(event))
+                                  .toList(),
                             ),
                           );
                         }

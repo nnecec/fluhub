@@ -17,13 +17,15 @@ class StoreState {
   // User userInfo;
   CupertinoThemeData themeData;
   Locale locale;
+  final currentUser;
 
-  StoreState({this.accessToken, this.themeData});
+  StoreState({this.accessToken, this.themeData, this.currentUser});
 
   factory StoreState.initial() {
     return StoreState(
       accessToken: '',
       themeData: dark,
+      currentUser: {},
     );
   }
 }
