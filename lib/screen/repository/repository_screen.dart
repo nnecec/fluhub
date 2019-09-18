@@ -1,9 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:fluhub/widgets/repository_card.dart';
 
 import './bloc/bloc.dart';
+
+import './repository_information.dart';
+import './repository_summary.dart';
 
 class RepositoryScreen extends StatefulWidget {
   @override
@@ -18,8 +23,8 @@ class RepositoryScreenState extends State<RepositoryScreen> {
   @override
   Widget build(BuildContext context) {
     final _repositoryBloc = BlocProvider.of<RepositoryBloc>(context);
-
     final RepositoryArguments args = ModalRoute.of(context).settings.arguments;
+    _repositoryBloc.dispatch(RepositoryDetail(name: args.name));
 
     return CupertinoPageScaffold(
       child: Container(
@@ -37,12 +42,22 @@ class RepositoryScreenState extends State<RepositoryScreen> {
                   (context, index) {
                     return BlocBuilder<RepositoryBloc, RepositoryState>(
                       builder: (BuildContext context, RepositoryState state) {
-                        if (state is RepositoryStateEmpty) {
-                          _repositoryBloc
-                              .dispatch(RepositoryDetail(name: args.name));
+                        if (state is RepositoryStateLoading) {
+                          return CupertinoActivityIndicator();
                         }
                         if (state is RepositoryStateSuccess) {
-                          return Text('123');
+                          print(state.repository);
+                          final repository = state.repository['repository'];
+                          return Column(
+                            children: <Widget>[
+                              RepositoryInformation(repository),
+                              RepositorySummary(repository),
+                              Container(
+                                child: Markdown(data: '# h1'),
+                                height: 400,
+                              ),
+                            ],
+                          );
                         }
 
                         return Text('');

@@ -24,7 +24,7 @@ class StoreState {
   factory StoreState.initial() {
     return StoreState(
       accessToken: '',
-      themeData: dark,
+      themeData: light,
       currentUser: {},
     );
   }

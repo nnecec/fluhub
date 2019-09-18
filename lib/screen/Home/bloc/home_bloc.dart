@@ -21,8 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final List events =
             await v3.get('/users/${event.login}/received_events');
 
-        for (var i = 0; i < events.length; i++) {
-          final event = events[i];
+        events.map((event) async* {
           final repoArr = event['repo']['name'].split('/');
           final QueryResult repositoryDetail = await githubClient.query(
             QueryOptions(
@@ -35,7 +34,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           );
           print(repositoryDetail.data);
           event['repositoryDetail'] = repositoryDetail.data;
-        }
+          yield HomeStateSuccess(events: events);
+        });
 
         yield HomeStateSuccess(events: events);
       } catch (error) {

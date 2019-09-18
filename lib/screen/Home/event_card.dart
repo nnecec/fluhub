@@ -44,6 +44,15 @@ class EventCard extends StatelessWidget {
                   ),
                 ),
                 Text(action),
+                CupertinoButton(
+                  child: Text(repoName),
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).pushNamed(
+                      '/repository',
+                      arguments: RepositoryArguments(repoName),
+                    );
+                  },
+                ),
               ],
             ),
             if (repository != null)
