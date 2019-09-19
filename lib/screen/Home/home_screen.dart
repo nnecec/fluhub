@@ -28,6 +28,9 @@ class HomeScreen extends StatelessWidget {
                         if (state is HomeStateEmpty) {
                           _homeBloc.dispatch(EventsList(login: 'nnecec'));
                         }
+                        if (state is HomeStateLoading) {
+                          return CupertinoActivityIndicator();
+                        }
                         if (state is HomeStateSuccess) {
                           return Container(
                             child: Column(

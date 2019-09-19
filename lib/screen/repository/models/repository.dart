@@ -6,10 +6,14 @@ final String repositoryDocument = '''
       }
       name
       description
+      homepageUrl
       issues(states: OPEN) {
         totalCount
       }
       pullRequests(states: OPEN) {
+        totalCount
+      }
+      releases {
         totalCount
       }
       watchers {
@@ -27,6 +31,13 @@ final String repositoryDocument = '''
               totalCount
             }
           }
+        repository{
+          readme: object(expression: "HEAD:README.md"){
+            ... on Blob {
+                text
+              }
+            }
+          }  
         }
       }
       refs(first: 100, refPrefix: "refs/heads/") {

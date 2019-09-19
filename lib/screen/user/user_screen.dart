@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/list_item.dart';
+import '../../widgets/list_card.dart';
 import '../../widgets/wrapper_card.dart';
 import '../../widgets/profile_card.dart';
 import '../../widgets/contribution_card.dart';
@@ -54,8 +54,8 @@ class UserScreen extends StatelessWidget {
                                       user['contributionsCollection']
                                           ['contributionCalendar'])),
                               WrapperCard(
-                                child: Column(
-                                  children: [
+                                child: ListCard(
+                                  data: [
                                     ListItem(
                                       name: 'Repositories',
                                       subtitle: user['repositories']
@@ -77,7 +77,6 @@ class UserScreen extends StatelessWidget {
                                       name: 'Following',
                                       subtitle: user['following']['totalCount']
                                           .toString(),
-                                      bordered: false,
                                     )
                                   ],
                                 ),
@@ -127,7 +126,6 @@ class UserScreen extends StatelessWidget {
                                       after: CupertinoSwitch(
                                         value: store.state.themeData == dark,
                                         onChanged: (bool value) {
-                                          print(value);
                                           if (value == false) {
                                             store.dispatch(
                                                 CustomThemeData(light));

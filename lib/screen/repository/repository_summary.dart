@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fluhub/widgets/repository_card.dart';
+
 import 'package:fluhub/widgets/wrapper_card.dart';
+import 'package:fluhub/widgets/list_card.dart';
 
 class RepositorySummary extends StatelessWidget {
   final repository;
@@ -15,14 +16,20 @@ class RepositorySummary extends StatelessWidget {
         style: TextStyle(
           color: CupertinoColors.inactiveGray,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Commits'),
-            Text('Branch'),
-            Text('releases'),
-            if (repository['license'] != null) Text(repository['license']),
-            Text('Code'),
+        child: ListCard(
+          data: [
+            ListItem(
+              name: 'Issues',
+              subtitle: repository['issues']['totalCount'].toString(),
+            ),
+            ListItem(
+              name: 'Pull requests',
+              subtitle: repository['pullRequests']['totalCount'].toString(),
+            ),
+            ListItem(
+              name: 'Releases',
+              subtitle: repository['releases']['totalCount'].toString(),
+            ),
           ],
         ),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:fluhub/widgets/repository_card.dart';
+import 'package:fluhub/widgets/markdown_card.dart';
 
 import './bloc/bloc.dart';
 
@@ -49,13 +49,14 @@ class RepositoryScreenState extends State<RepositoryScreen> {
                           print(state.repository);
                           final repository = state.repository['repository'];
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               RepositoryInformation(repository),
                               RepositorySummary(repository),
-                              Container(
-                                child: Markdown(data: '# h1'),
-                                height: 400,
-                              ),
+                              // Container(
+                              //   child: MarkdownCard(data: repository['defaultBranchRef']['target']['repository']['readme']['text']),
+                              // ),
                             ],
                           );
                         }

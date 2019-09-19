@@ -1,13 +1,44 @@
 import 'package:flutter/cupertino.dart';
 
-class ListItem extends StatelessWidget {
-  ListItem({this.name, this.subtitle, this.before, this.after, this.bordered});
+class ListCard extends StatelessWidget {
+  List<ListItem> data;
+  ListCard({this.data});
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: data.map((item) {
+        return ListItem(
+          name: item.name,
+          subtitle: item.subtitle,
+        );
+      }).toList(),
+    );
+  }
+}
+
+class ListItem extends StatefulWidget {
   final String name;
   final String subtitle;
   final Widget before;
   final Widget after;
   final bool bordered;
+
+  ListItem(
+      {@required this.name,
+      this.subtitle,
+      this.before,
+      this.after,
+      this.bordered});
+
+  @override
+  State<StatefulWidget> createState() {
+    return ListItemState();
+  }
+}
+
+class ListItemState extends State<ListItem> {
+  bool touched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,34 +46,27 @@ class ListItem extends StatelessWidget {
 
     return Container(
       height: 50.0,
+      color: touched ? CupertinoColors.lightBackgroundGray : null,
       child: Row(
         children: <Widget>[
           // Icon
-          if (before != null)
+          if (widget.before != null)
             Container(
               width: 38.0,
               margin: EdgeInsets.only(top: 10),
-              child: before,
+              child: widget.before,
             ),
           Expanded(
             child: Container(
-              decoration: this.bordered == false
-                  ? null
-                  : BoxDecoration(
-                      border: Border(
-                        bottom:
-                            BorderSide(color: Color(0xFFBCBBC1), width: 0.0),
-                      ),
-                    ),
               child: Row(
                 children: <Widget>[
-                  Text(name),
+                  Text(widget.name),
                   Expanded(
                     child: Column(),
                   ),
-                  if (subtitle != null)
+                  if (widget.subtitle != null)
                     Text(
-                      subtitle,
+                      widget.subtitle,
                       style: TextStyle(
                         color: theme.primaryColor,
                         fontSize: 12.0,
@@ -51,7 +75,7 @@ class ListItem extends StatelessWidget {
                     ),
                   Padding(
                     padding: EdgeInsets.only(left: 9.0),
-                    child: after,
+                    child: widget.after,
                   ),
                 ],
               ),
