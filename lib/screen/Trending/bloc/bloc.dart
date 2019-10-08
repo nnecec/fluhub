@@ -1,3 +1,3 @@
-export 'search_bloc.dart';
-export 'search_event.dart';
-export 'search_state.dart';
+export 'trending_bloc.dart';
+export 'trending_event.dart';
+export 'trending_state.dart';

@@ -3,14 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class HomeEvent extends Equatable {
-  HomeEvent([List props = const <dynamic>[]]) : super(props);
+  const HomeEvent();
 }
 
 class EventsList extends HomeEvent {
   final String login;
 
-  EventsList({@required this.login}): super([login]);
+  const EventsList({this.login});
 
   @override
-  String toString() => 'EventsList { login: $login }';
+  List<Object> get props => [login];
 }

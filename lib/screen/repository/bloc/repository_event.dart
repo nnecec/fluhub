@@ -3,16 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class RepositoryEvent extends Equatable {
-  RepositoryEvent([List props = const <dynamic>[]]) : super(props);
+  const RepositoryEvent();
 }
 
 class RepositoryDetail extends RepositoryEvent {
   final String name;
 
-  RepositoryDetail({
-    @required this.name,
-  }) : super([name]);
+  const RepositoryDetail({@required this.name});
 
   @override
-  String toString() => 'EventsList { name: $name }';
+  List<Object> get props => [name];
 }

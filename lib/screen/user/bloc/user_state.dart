@@ -3,33 +3,33 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class UserState extends Equatable {
-  UserState([List props = const <dynamic>[]]) : super(props);
+  const UserState();
 }
 
 class UserStateEmpty extends UserState {
   @override
-  String toString() => 'UserStateEmpty';
+  List<Object> get props => [];
 }
 
 class UserStateLoading extends UserState {
   @override
-  String toString() => 'UserStateLoading';
+  List<Object> get props => [];
 }
 
 class UserStateSuccess extends UserState {
   final dynamic user;
 
-  UserStateSuccess({@required this.user}) : super([user]);
-  
+  UserStateSuccess({@required this.user});
+
   @override
-  String toString() => 'UserStateSuccess';
+  List<Object> get props => [user];
 }
 
 class UserStateError extends UserState {
   final String error;
 
-  UserStateError(this.error) : super([error]);
+  UserStateError(this.error);
 
   @override
-  String toString() => 'UserStateError';
+  List<Object> get props => [error];
 }

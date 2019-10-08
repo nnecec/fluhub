@@ -3,14 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class UserEvent extends Equatable {
-  UserEvent([List props = const <dynamic>[]]) : super(props);
+  const UserEvent();
 }
 
 class UserDetail extends UserEvent {
   final String login;
 
-  UserDetail({@required this.login}): super([login]);
+  UserDetail({@required this.login});
 
   @override
-  String toString() => 'UserDetail { login: $login }';
+  List<Object> get props => [login];
 }

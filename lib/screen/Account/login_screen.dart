@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
       print('onUrlChanged: $url');
       if (url.contains('code=')) {
         final code = url.split('code=')[1];
-
+        
         final res = await api.get(
           'https://github.com/login/oauth/access_token',
           {

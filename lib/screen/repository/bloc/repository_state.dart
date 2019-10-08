@@ -3,33 +3,33 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class RepositoryState extends Equatable {
-  RepositoryState([List props = const <dynamic>[]]) : super(props);
+  const RepositoryState();
 }
 
 class RepositoryStateEmpty extends RepositoryState {
   @override
-  String toString() => 'RepositoryStateEmpty';
+  List<Object> get props => [];
 }
 
 class RepositoryStateLoading extends RepositoryState {
   @override
-  String toString() => 'RepositoryStateLoading';
+  List<Object> get props => [];
 }
 
 class RepositoryStateSuccess extends RepositoryState {
   final dynamic repository;
 
-  RepositoryStateSuccess({@required this.repository}) : super([repository]);
+  const RepositoryStateSuccess({@required this.repository});
 
   @override
-  String toString() => 'RepositoryStateSuccess';
+  List<Object> get props => [repository];
 }
 
 class RepositoryStateError extends RepositoryState {
   final error;
 
-  RepositoryStateError(this.error) : super([error]);
+  RepositoryStateError(this.error);
 
   @override
-  String toString() => 'RepositoryStateError';
+  List<Object> get props => [error];
 }

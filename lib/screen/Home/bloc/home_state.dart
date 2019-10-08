@@ -3,33 +3,33 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class HomeState extends Equatable {
-  HomeState([List props = const <dynamic>[]]) : super(props);
+  const HomeState();
 }
 
 class HomeStateEmpty extends HomeState {
   @override
-  String toString() => 'HomeStateEmpty';
+  List<Object> get props => [];
 }
 
 class HomeStateLoading extends HomeState {
   @override
-  String toString() => 'HomeStateLoading';
+  List<Object> get props => [];
 }
 
 class HomeStateSuccess extends HomeState {
   final dynamic events;
 
-  HomeStateSuccess({@required this.events}) : super([events]);
+  const HomeStateSuccess({this.events});
 
   @override
-  String toString() => 'HomeStateSuccess';
+  List<Object> get props => [events];
 }
 
 class HomeStateError extends HomeState {
   final error;
 
-  HomeStateError(this.error) : super([error]);
+  const HomeStateError(this.error);
 
   @override
-  String toString() => 'HomeStateError';
+  List<Object> get props => [error];
 }
