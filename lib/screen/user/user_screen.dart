@@ -7,13 +7,11 @@ import '../../widgets/wrapper_card.dart';
 import '../../widgets/profile_card.dart';
 import '../../widgets/contribution_card.dart';
 
-import '../../config/constant.dart';
-import '../../utils/storage.dart';
+
 import '../../utils/theme.dart';
 
 import '../../store/store.dart';
 import '../../store/themeData/action.dart';
-import '../account/redux/action.dart';
 
 import './bloc/bloc.dart';
 
@@ -28,6 +26,13 @@ class UserScreen extends StatelessWidget {
           slivers: <Widget>[
             CupertinoSliverNavigationBar(
               largeTitle: Text('Me'),
+              trailing: CupertinoButton(
+                child: Icon(CupertinoIcons.settings),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed('/settings');
+                },
+              ),
             ),
             SliverSafeArea(
               top: false,
@@ -54,6 +59,7 @@ class UserScreen extends StatelessWidget {
                                       user['contributionsCollection']
                                           ['contributionCalendar'])),
                               WrapperCard(
+                                padding: 2,
                                 child: ListCard(
                                   data: [
                                     ListItem(
@@ -81,43 +87,7 @@ class UserScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              CupertinoButton(
-                                child: Text('Log out'),
-                                color: CupertinoColors.destructiveRed,
-                                onPressed: () {
-                                  showCupertinoModalPopup(
-                                    context: context,
-                                    builder: (context) {
-                                      return CupertinoActionSheet(
-                                        title: Text('确认退出么？'),
-                                        message: Text('退出后需要重新登陆才可使用'),
-                                        cancelButton:
-                                            CupertinoActionSheetAction(
-                                          onPressed: () {
-                                            Navigator.pop(
-                                                context, 'cancel logout');
-                                          },
-                                          child: Text("取消"),
-                                        ),
-                                        actions: <Widget>[
-                                          CupertinoActionSheetAction(
-                                            isDestructiveAction: true,
-                                            onPressed: () async {
-                                              await LocalStorage.removeItem(
-                                                  Constant.TOKEN);
-                                              store.dispatch(
-                                                  SetAccessTokenAction(''));
-                                              Navigator.pop(
-                                                  context, 'confirm logout');
-                                            },
-                                            child: Text('确认'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                              
                               WrapperCard(
                                 child: Column(
                                   children: [

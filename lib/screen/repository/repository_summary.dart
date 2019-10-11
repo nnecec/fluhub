@@ -12,6 +12,7 @@ class RepositorySummary extends StatelessWidget {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return WrapperCard(
+      padding: 2,
       child: DefaultTextStyle(
         style: TextStyle(
           color: CupertinoColors.inactiveGray,

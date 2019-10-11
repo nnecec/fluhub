@@ -29,29 +29,31 @@ class EventCard extends StatelessWidget {
     return WrapperCard(
       child: DefaultTextStyle(
         style: TextStyle(
-          fontSize: 12.0,
           color: CupertinoColors.inactiveGray,
         ),
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
+                Text(login),
                 Container(
-                  margin: EdgeInsets.only(right: 8.0),
-                  child: Text(
-                    login,
-                    style: TextStyle(color: theme.primaryColor),
-                  ),
+                  margin: EdgeInsets.only(right: 4.0, left: 4.0),
+                  child: Text(action),
                 ),
-                Text(action),
-                CupertinoButton(
-                  child: Text(repoName),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pushNamed(
-                      '/repository',
-                      arguments: RepositoryArguments(repoName),
-                    );
-                  },
+                Flexible(
+                  child: GestureDetector(
+                    child: Text(
+                      repoName,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: theme.primaryColor),
+                    ),
+                    onTap: () {
+                      Navigator.of(context, rootNavigator: true).pushNamed(
+                        '/repository',
+                        arguments: RepositoryArguments(repoName),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

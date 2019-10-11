@@ -9,7 +9,7 @@ class RepositoryInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
-    print(repository['homepageUrl'].isNotEmpty);
+    print(repository);
     return WrapperCard(
       child: DefaultTextStyle(
         style: TextStyle(
@@ -34,7 +34,7 @@ class RepositoryInformation extends StatelessWidget {
                 child: Text(repository['description']),
               ),
             if (repository.containsKey('homepageUrl') &&
-                repository['homepageUrl'].isNotEmpty)
+                repository['homepageUrl'] != null)
               Container(
                 margin: EdgeInsets.all(8),
                 child: Text(

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class WrapperCard extends StatelessWidget {
-  final Widget child;
+  Widget child;
+  int padding;
 
-  WrapperCard({this.child});
+  WrapperCard({@required this.child, this.padding = 4});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,14 @@ class WrapperCard extends StatelessWidget {
         // BoxShadow(
         // color: CupertinoColors.lightBackgroundGray,
         // blurRadius: 8.0,
-        // offset: Offset(0, 2.0),
+        // padding: padding(0, 2.0),
         // ),
         // ],
       ),
       margin: EdgeInsets.all(16.0),
-      padding: EdgeInsets.all(16.0),
+      padding: padding == 4
+          ? EdgeInsets.all(16.0)
+          : EdgeInsets.only(left: 16.0, right: 16.0),
       child: child,
     );
   }

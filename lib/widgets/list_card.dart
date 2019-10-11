@@ -45,7 +45,7 @@ class ListItemState extends State<ListItem> {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return Container(
-      height: 50.0,
+      height: 46.0,
       color: touched ? CupertinoColors.lightBackgroundGray : null,
       child: Row(
         children: <Widget>[
