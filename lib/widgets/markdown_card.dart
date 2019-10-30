@@ -1,3 +1,4 @@
+import 'package:fluhub/widgets/wrapper_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -68,11 +69,13 @@ class MarkdownCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CupertinoThemeData theme = CupertinoTheme.of(context);
 
-    return Container(
-      color: theme.primaryContrastingColor,
-      child: MarkdownBody(
-        // styleSheet: _getStyle(theme),
-        data: data,
+    return WrapperCard(
+      child: Container(
+        color: theme.primaryContrastingColor,
+        child: MarkdownBody(
+          // styleSheet: _getStyle(theme),
+          data: data,
+        ),
       ),
     );
   }

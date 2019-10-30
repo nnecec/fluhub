@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                     return BlocBuilder<HomeBloc, HomeState>(
                       builder: (BuildContext context, HomeState state) {
                         if (state is HomeStateEmpty) {
-                          _homeBloc.dispatch(EventsList(login: 'nnecec'));
+                          _homeBloc.add(EventsList(login: 'nnecec'));
                         }
                         if (state is HomeStateLoading) {
                           return CupertinoActivityIndicator();

@@ -43,7 +43,7 @@ class UserScreen extends StatelessWidget {
                     return BlocBuilder<UserBloc, UserState>(
                       builder: (BuildContext context, UserState state) {
                         if (state is UserStateEmpty) {
-                          _userBloc.dispatch(UserDetail(login: 'nnecec'));
+                          _userBloc.add(UserDetail(login: 'nnecec'));
                         }
                         if (state is UserStateLoading) {
                           return Center(child: CupertinoActivityIndicator());

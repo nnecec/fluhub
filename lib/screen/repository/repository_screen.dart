@@ -24,14 +24,14 @@ class RepositoryScreenState extends State<RepositoryScreen> {
   Widget build(BuildContext context) {
     final _repositoryBloc = BlocProvider.of<RepositoryBloc>(context);
     final RepositoryArguments args = ModalRoute.of(context).settings.arguments;
-    _repositoryBloc.dispatch(RepositoryDetail(name: args.name));
+    _repositoryBloc.add(RepositoryDetail(name: args.name));
 
     return CupertinoPageScaffold(
       child: Container(
         child: CustomScrollView(
           slivers: <Widget>[
             CupertinoSliverNavigationBar(
-              previousPageTitle: 'Home',
+              // previousPageTitle: 'Home',
               largeTitle: Text(args.name.split('/')[1]),
             ),
             SliverSafeArea(
@@ -54,9 +54,9 @@ class RepositoryScreenState extends State<RepositoryScreen> {
                             children: <Widget>[
                               RepositoryInformation(repository),
                               RepositorySummary(repository),
-                              // Container(
-                              //   child: MarkdownCard(data: repository['defaultBranchRef']['target']['repository']['readme']['text']),
-                              // ),
+                              MarkdownCard(
+                                  data: repository['defaultBranchRef']['target']
+                                      ['repository']['readme']['text']),
                             ],
                           );
                         }
