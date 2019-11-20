@@ -18,8 +18,8 @@ dependencies:
   flutter_redux: ^0.5.3
   rxdart: ^0.22.4
   redux_epics: ^0.10.6
-  bloc: ^1.0.0
-  flutter_bloc: ^1.0.0
+  bloc: ^2.0.0
+  flutter_bloc: ^2.0.0
   equatable: ^0.6.1
   url_launcher: ^5.1.2
   webview_flutter: ^0.3.15
