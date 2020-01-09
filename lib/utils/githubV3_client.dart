@@ -15,6 +15,7 @@ class GitHubV3Client {
         headers: {'Authorization': 'token $accessToken'},
       ),
     );
+    dio.interceptors.add(LogInterceptor(responseBody: false));
   }
   get(String url, [Map<String, dynamic> query = const {}]) async {
     try {

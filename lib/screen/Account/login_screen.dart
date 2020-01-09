@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
       print('onUrlChanged: $url');
       if (url.contains('code=')) {
         final code = url.split('code=')[1];
-        
+
         final res = await api.get(
           'https://github.com/login/oauth/access_token',
           {
@@ -31,14 +31,14 @@ class LoginScreen extends StatelessWidget {
 
         if (res.data.contains('access_token=')) {
           final resArray = res.data.split('&');
-          final access_token = resArray[0].split('access_token=')[1];
-          final token_type = resArray[2].split('token_type=')[1];
+          final accessToken = resArray[0].split('access_token=')[1];
+          final tokenType = resArray[2].split('token_type=')[1];
 
-          LocalStorage.setItem(Constant.TOKEN, access_token);
-          LocalStorage.setItem(Constant.TOKEN_TYPE, token_type);
+          LocalStorage.setItem(Constant.TOKEN, accessToken);
+          LocalStorage.setItem(Constant.TOKEN_TYPE, tokenType);
           Navigator.pop(context);
 
-          store.dispatch(SetAccessTokenAction(access_token));
+          store.dispatch(SetAccessTokenAction(accessToken));
         }
       }
     });
@@ -55,10 +55,5 @@ class LoginScreen extends StatelessWidget {
         middle: Text('Login with GitHub'),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    flutterWebviewPlugin.dispose();
   }
 }

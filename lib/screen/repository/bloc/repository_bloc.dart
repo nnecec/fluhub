@@ -23,7 +23,7 @@ class RepositoryBloc extends Bloc<RepositoryEvent, RepositoryState> {
 
         final QueryResult detail = await githubClient.query(
           QueryOptions(
-            document: repositoryDocument,
+            documentNode: gql(repositoryDocument),
             variables: {
               'owner': repoArr[0],
               'name': repoArr[1],

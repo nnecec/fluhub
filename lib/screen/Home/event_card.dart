@@ -4,7 +4,9 @@ import 'package:fluhub/widgets/wrapper_card.dart';
 
 class EventCard extends StatelessWidget {
   final event;
-  EventCard(this.event) {}
+  EventCard(this.event) {
+    print(this.event);
+  }
 
   String parseActionName() {
     final type = event['type'];

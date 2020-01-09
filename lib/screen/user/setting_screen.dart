@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/list_card.dart';
-import '../../widgets/wrapper_card.dart';
 import '../../config/constant.dart';
 import '../../utils/storage.dart';
 import '../account/redux/action.dart';
 import '../../store/store.dart';
-import '../../store/themeData/action.dart';
 
 class SettingScreen extends StatelessWidget {
   @override

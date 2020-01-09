@@ -5,6 +5,7 @@ class API {
 
   API() {
     dio = Dio();
+    dio.interceptors.add(LogInterceptor(responseBody: false));
   }
   get(String url, [Map<String, dynamic> query]) async {
     try {

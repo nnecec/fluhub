@@ -18,7 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield UserStateLoading();
       try {
         final QueryResult result = await githubClient.query(
-          QueryOptions(document: queryUser),
+          QueryOptions(documentNode: gql(queryUser)),
         );
         yield UserStateSuccess(user: result.data['viewer']);
       } catch (error) {

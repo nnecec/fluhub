@@ -1,10 +1,8 @@
 import 'package:fluhub/store/reducers.dart';
-import 'package:fluhub/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './routes.dart';
 import './utils/graphql_client.dart';
@@ -30,7 +28,7 @@ class AppState extends State<App> {
               child: MultiBlocProvider(
                 providers: [
                   BlocProvider<RepositoryBloc>(
-                    builder: (BuildContext context) => RepositoryBloc(),
+                    create: (BuildContext context) => RepositoryBloc(),
                   ),
                 ],
                 child: CupertinoApp(

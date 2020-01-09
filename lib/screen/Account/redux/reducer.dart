@@ -1,4 +1,3 @@
-import 'package:redux/redux.dart';
 import './action.dart';
 import '../../../store/reducers.dart';
 

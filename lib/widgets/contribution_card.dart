@@ -17,7 +17,6 @@ class ContributionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     int totalCount = contributionCalendar['totalContributions'];
     List weeks = contributionCalendar['weeks'];
-    final CupertinoThemeData theme = CupertinoTheme.of(context);
 
     return Container(
       child: Column(

@@ -47,10 +47,10 @@ class RootScreenState extends State<RootScreen> {
       builder: (BuildContext context) {
         return MultiBlocProvider(providers: [
           BlocProvider<HomeBloc>(
-            builder: (BuildContext context) => HomeBloc(),
+            create: (BuildContext context) => HomeBloc(),
           ),
           BlocProvider<UserBloc>(
-            builder: (BuildContext context) => UserBloc(),
+            create: (BuildContext context) => UserBloc(),
           ),
         ], child: widget(context));
       },

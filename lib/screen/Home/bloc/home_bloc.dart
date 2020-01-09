@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           final repoArr = event['repo']['name'].split('/');
           final QueryResult repositoryDetail = await githubClient.query(
             QueryOptions(
-              document: repositoryDocument,
+              documentNode: gql(repositoryDocument),
               variables: {
                 'owner': repoArr[0],
                 'name': repoArr[1],
